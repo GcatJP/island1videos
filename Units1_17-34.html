@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+  <!-- ============================================================
+     ADVENTURE ISLAND — units.html
+     ============================================================
+     CUSTOMISE THIS SECTION:
+       • units[]  — label, url, colour for each button
+       • --bg     — background gradient (one line, same everywhere)
+
+     GRID LAYOUT:
+       • Landscape tablet/desktop → 5 × 4
+       • Landscape iPhone         → 4 × 5
+       • Portrait tablet/desktop  → 2 × 10
+       • Portrait iPhone          → 2 × 10
+     ============================================================ -->
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,
+          maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Units 17-34</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      :root {
+        --font-chalk:
+          "Chalkboard SE", "Chalkboard", "Comic Neue", "Comic Sans MS", cursive;
+        --bg: linear-gradient(to bottom, #6593f6, #08328c);
+        --colour-btn-border: #000000;
+      }
+
+      html {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        max-width: 100vw;
+      }
+
+      body {
+        font-family: var(--font-chalk);
+        background: var(--bg);
+        width: 100%;
+        max-width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ----------------------------------------------------------
+         GRID WRAPPER
+      ---------------------------------------------------------- */
+      .grid-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+
+      /* ----------------------------------------------------------
+         BUTTONS
+      ---------------------------------------------------------- */
+      .btn {
+        font-family: var(--font-chalk);
+        font-weight: bold;
+        color: yellow;
+        border: 2px solid var(--colour-btn-border);
+        border-radius: 10px;
+        text-decoration: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        overflow: hidden;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-text-stroke: 2px orange;
+        transition:
+          transform 0.1s ease,
+          opacity 0.15s ease;
+      }
+
+      .btn:active {
+        transform: scale(0.97);
+        opacity: 0.85;
+      }
+
+      /* ----------------------------------------------------------
+         CORNER IMAGE
+      ---------------------------------------------------------- */
+      .corner-img {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        pointer-events: none;
+        z-index: 10;
+      }
+
+      /* ----------------------------------------------------------
+         LANDSCAPE — 6 × 4
+      ---------------------------------------------------------- */
+      @media screen and (orientation: landscape) {
+        .grid-wrapper {
+          flex: 1;
+          padding: 1vh 2vw 2vh;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          grid-template-rows: repeat(4, 1fr);
+          gap: clamp(4px, 1vw, 12px);
+          width: min(99vw, 1200px);
+          height: min(82vh, 650px);
+        }
+
+        .btn {
+          font-size: clamp(0.8rem, 5vw, 8rem);
+        }
+
+        .corner-img {
+          display: none !important;
+        }
+      }
+      /* ----------------------------------------------------------
+         LANDSCAPE IPHONE — 4 × 5  (max-height: 450px)
+      ---------------------------------------------------------- */
+      @media screen and (orientation: landscape) and (max-height: 450px) {
+        body {
+          overflow: hidden;
+          width: 100vw;
+          max-width: 100vw;
+        }
+
+        .grid-wrapper {
+          flex: 1 !important;
+          padding: 0 2vw 0 !important;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr) !important;
+          grid-template-rows: repeat(6, 1fr) !important;
+          gap: clamp(2px, 0.5vw, 6px) !important;
+          width: min(96vw, 800px) !important;
+          height: min(64vh, 280px) !important;
+        }
+
+        .btn {
+          font-size: clamp(0.6rem, 3.5vw, 3rem) !important;
+        }
+
+        .corner-img {
+          width: clamp(30px, 7vw, 70px);
+          margin-top: 10px;
+          margin-right: 10px;
+        }
+      }
+
+      /* ----------------------------------------------------------
+         PORTRAIT — 2 × 10
+      ---------------------------------------------------------- */
+      @media screen and (orientation: portrait) {
+        body {
+          overflow-y: auto;
+          height: auto;
+          min-height: 100dvh;
+        }
+
+        .grid-wrapper {
+          padding: 2vw 4vw 4vw;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: repeat(8, 1fr);
+          gap: clamp(6px, 2vw, 16px);
+          width: 100%;
+          max-width: 700px;
+        }
+
+        .btn {
+          font-size: clamp(1rem, 7vw, 4rem);
+          height: clamp(60px, 23vw, 110px);
+          width: 100%;
+        }
+
+        .corner-img {
+          width: clamp(50px, 16vw, 110px);
+          margin-bottom: 10px;
+          margin-right: 10px;
+        }
+      }
+
+      /* ----------------------------------------------------------
+         PORTRAIT IPHONE — 2 × 10  (max-width: 430px)
+         To move grid up: decrease margin on .back-btn
+         To move grid down: increase margin on .back-btn
+      ---------------------------------------------------------- */
+      @media screen and (orientation: portrait) and (max-width: 430px) {
+        body {
+          overflow-y: auto;
+          height: auto;
+          min-height: 100dvh;
+        }
+
+        .grid-wrapper {
+          padding: 1vw 4vw 4vw !important;
+          padding-top: 2vh !important;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr) !important;
+          grid-template-rows: repeat(8, 1fr) !important;
+          gap: clamp(4px, 1.5vw, 10px) !important;
+          width: 100% !important;
+          max-width: 100% !important;
+        }
+
+        .btn {
+          font-size: clamp(0.9rem, 7vw, 2.5rem) !important;
+          height: clamp(70px, 18vw, 100px) !important;
+        }
+
+        .corner-img {
+          display: none !important;
+        }
+        .btn-last {
+          font-size: clamp(1.5rem, 2.5vw, 4rem) !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="grid-wrapper">
+      <div class="grid" id="main-grid"></div>
+    </div>
+
+    <img
+      class="corner-img"
+      src="images/Sami1.2.png"
+      alt=""
+      aria-hidden="true"
+    />
+
+    <script>
+      const units = [
+        {
+          label: "←",
+          url: "index.html",
+          colour: "rgba(0,0,0,0.4)",
+          border: "yellow",
+        },
+        {
+          label: "17",
+          url: "https://player.mediadelivery.net/play/581234/04b3c1ad-7bf8-4413-bda1-1d67c4e17cc3",
+          colour: "#1a5276",
+        },
+        {
+          label: "18a",
+          url: "https://player.mediadelivery.net/play/581234/72f1c90a-823d-41f4-b04a-17a0de10cf54",
+          colour: "#0e2f44",
+        },
+        {
+          label: "18b",
+          url: "https://player.mediadelivery.net/play/581234/7590439f-6136-420f-a051-5d7580d1a050",
+          colour: "#1a5276",
+        },
+        {
+          label: "19",
+          url: "https://player.mediadelivery.net/play/581234/bbe008f7-376e-4dd6-9a1d-4e6e41d068c4",
+          colour: "#0e2f44",
+        },
+        {
+          label: "20",
+          url: "https://player.mediadelivery.net/play/581234/a70406f4-975c-479e-be48-77b44b8c06b9",
+          colour: "#154360",
+        },
+        {
+          label: "21",
+          url: "https://player.mediadelivery.net/play/581234/d1fc1b0d-5ee1-41b9-a61d-bd46b8197b93",
+          colour: "#0e2f44",
+        },
+        {
+          label: "22a",
+          url: "https://player.mediadelivery.net/play/581234/0c97eb7c-2e90-411b-8950-bc88837eacdb",
+          colour: "#1a5276",
+        },
+        {
+          label: "22b",
+          url: "https://player.mediadelivery.net/play/581234/9849889e-9dca-4a68-b65b-7c7ce541b051",
+          colour: "#154360",
+        },
+        {
+          label: "23",
+          url: "https://player.mediadelivery.net/play/581234/02af8923-cc5a-4f51-bfb0-56bad2c99cca",
+          colour: "#0e2f44",
+        },
+        {
+          label: "24",
+          url: "https://player.mediadelivery.net/play/581234/cd7ad283-1408-4dd2-bf66-191514bfaff3",
+          colour: "#1a5276",
+        },
+        {
+          label: "25",
+          url: "https://player.mediadelivery.net/play/581234/c168f000-c691-44db-aad8-2d592c3d2311",
+          colour: "#154360",
+        },
+        {
+          label: "26",
+          url: "https://player.mediadelivery.net/play/581234/0306d4f1-4b59-4d82-b5f2-8eba21d41f79",
+          colour: "#0e2f44",
+        },
+        {
+          label: "27a",
+          url: "https://player.mediadelivery.net/play/581234/bf56667b-095a-4f68-bb7e-0ff802bada8e",
+          colour: "#1a5276",
+        },
+        {
+          label: "27b",
+          url: "https://player.mediadelivery.net/play/581234/6ccb442e-921b-4d9a-929b-5294ed789827",
+          colour: "#154360",
+        },
+        {
+          label: "28",
+          url: "https://player.mediadelivery.net/play/581234/3ea9cde5-38ed-4c09-920b-b32909f08857",
+          colour: "#0e2f44",
+        },
+        {
+          label: "29",
+          url: "https://player.mediadelivery.net/play/581234/c6c6d457-e2ec-45d1-93b5-9f5f8b4d07c0",
+          colour: "#1a5276",
+        },
+        {
+          label: "30",
+          url: "https://player.mediadelivery.net/play/581234/89dcc8fc-f7c2-4958-b0fc-45cc7e3aa745",
+          colour: "#154360",
+        },
+        {
+          label: "31",
+          url: "https://player.mediadelivery.net/play/581234/44ccf96b-6752-45eb-a1ba-b4203d87a6cc",
+          colour: "#0e2f44",
+        },
+        {
+          label: "32",
+          url: "https://player.mediadelivery.net/play/581234/986c70ef-6111-4d1f-ada5-0ceda1ed6bd5",
+          colour: "#1a5276",
+        },
+        {
+          label: "33",
+          url: "https://player.mediadelivery.net/play/581234/af7b0436-0cb1-4b05-8c28-3d84425ad4e2",
+          colour: "#154360",
+        },
+        {
+          label: "34a",
+          url: "https://player.mediadelivery.net/play/581234/9d9f4045-d256-4571-aa33-c8acd1f495ca",
+          colour: "#0e2f44",
+        },
+        {
+          label: "34b",
+          url: "https://player.mediadelivery.net/play/581234/36b33462-b102-43c3-bb94-a6bda3eb0c20",
+          colour: "#1a5276",
+        },
+        {
+          label: "comic",
+          url: "https://player.mediadelivery.net/play/581234/46da5abc-4c42-4a2c-a93a-6a8988c6df41",
+          colour: "#154360",
+          last: true,
+        },
+      ];
+
+      function buildGrid() {
+        const grid = document.getElementById("main-grid");
+        grid.innerHTML = "";
+        units.forEach(function (unit) {
+          var link = document.createElement("a");
+          link.className = "btn";
+          link.href = unit.url;
+          link.style.backgroundColor = unit.colour;
+          if (unit.border) {
+            link.style.border = "2px solid " + unit.border;
+            link.style.color = "yellow";
+          }
+          if (unit.last) {
+            link.classList.add("btn-last");
+          }
+          link.textContent = unit.label;
+          grid.appendChild(link);
+        });
+      }
+
+      buildGrid();
+
+      var resizeTimer;
+      window.addEventListener("resize", function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(buildGrid, 150);
+      });
+    </script>
+  </body>
+</html>
+```
